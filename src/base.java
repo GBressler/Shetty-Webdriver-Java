@@ -15,12 +15,14 @@ public class base {
 		driver.manage().window().maximize();
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
 		Thread.sleep(3000);
+		//Add a new item whenever needed
 		String[] itemsNeeded = {"Cucumber", "Brocolli", "Pumpkin", "Mango"};
 		List<WebElement> products = driver.findElements(By.cssSelector("h4.product-name"));
 		
 		for(int i = 0; i < products.size(); i++) {
-			//String name = products.get(i).getText();
+			//Get only the item name and toss out the rest
 			String[] name = products.get(i).getText().split("-");
+			//checking all times have been run
 			System.out.println("split " + i);
 			//name[0] = Brocolli
 			String formattedName = name[0].trim();
@@ -33,6 +35,7 @@ public class base {
 				//click add to cart
 				System.out.println("Add item " + i + " to cart");
 				driver.findElements(By.xpath("//div[@class='product-action']/button")).get(i).click();
+				//if you have all the needed items, stop iterating
 				if(allItems==itemsNeeded.length)
 				{
 					break;
